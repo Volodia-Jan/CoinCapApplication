@@ -21,6 +21,14 @@ public class CoinCapService
         return apiMarkets is null ? new List<ApiMarkets>() : apiMarkets;
     }
 
+    public async Task<List<ApiExchange>> GetApiExchanges()
+    {
+        var response = await _apiService.GetRequest(_baseAddress + "exchanges");
+        var apiExchanges = await GetApiData<List<ApiExchange>>(response);
+
+        return apiExchanges is null ? new List<ApiExchange>() : apiExchanges;
+    }
+
 
     /// <summary>
     /// Converts data from HTTP response into given type parameter <typeparamref name="M"/>

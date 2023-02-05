@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinCapApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF000882" Offset="1"/>
+            <GradientStop Color="#FF048EF9"/>
+            <GradientStop Color="#FF013CB0" Offset="0.379"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="Rounded-Btn" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10"></Setter>
+        </Style>
+        <Style x:Key="Nav-Btn" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                    <Setter Property="BorderBrush" Value="White"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="Markets" Style="{StaticResource Nav-Btn}" Click="MarketsPageNavigation"/>
+        </StackPanel>
+        <Frame Grid.Row="1" x:Name="PageFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

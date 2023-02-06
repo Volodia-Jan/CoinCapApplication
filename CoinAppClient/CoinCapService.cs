@@ -29,6 +29,30 @@ public class CoinCapService
         return apiExchanges is null ? new List<ApiExchange>() : apiExchanges;
     }
 
+    public async Task<List<ApiAsset>> GetApiAssets()
+    {
+        var response = await _apiService.GetRequest(_baseAddress + "assets");
+        var apiExchanges = await GetApiData<List<ApiAsset>>(response);
+
+        return apiExchanges is null ? new List<ApiAsset>() : apiExchanges;
+    }
+
+    public Task<ApiAsset> GetAssetById(string? id)
+    {
+        if (string.IsNullOrEmpty(id?.Trim()))
+            throw new ArgumentNullException(nameof(id));
+
+        return GetAssetByIdAsync(id);
+
+        async Task<ApiAsset> GetAssetByIdAsync(string assetId)
+        {
+            var response = await _apiService.GetRequest(_baseAddress + $"assets/{assetId}");
+            var apiAsset = await GetApiData<ApiAsset>(response);
+
+            return apiAsset is null ? new ApiAsset() : apiAsset;
+        }
+    }
+
 
     /// <summary>
     /// Converts data from HTTP response into given type parameter <typeparamref name="M"/>

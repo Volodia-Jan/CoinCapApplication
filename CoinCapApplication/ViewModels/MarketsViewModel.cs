@@ -1,6 +1,5 @@
 ﻿using CoinAppClient;
 using CoinAppClient.Models;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -44,7 +43,10 @@ internal class MarketsViewModel : BaseViewModel
     public MarketsViewModel()
     {
         _coinCap = new CoinCapService();
-        LoadData();
+        _exchanges = new ObservableCollection<ApiExchange>();
+        _selectedMarket = new ObservableCollection<ApiMarkets>();
+        _markets = new ObservableCollection<ApiMarkets>();
+        LoadData().Wait();
     }
 
     private async Task LoadData()

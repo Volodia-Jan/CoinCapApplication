@@ -1,9 +1,5 @@
 ﻿using CoinAppClient;
 using CoinAppClient.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoinCapApplication.ViewModels;
@@ -25,7 +21,8 @@ internal class CurrencyViewModel : BaseViewModel
     public CurrencyViewModel(string currencyId)
     {
         _coinCap = new CoinCapService();
-        LoadData(currencyId);
+        _asset = new ApiAsset();
+        LoadData(currencyId).Wait();
     }
 
     private async Task LoadData(string currencyId)

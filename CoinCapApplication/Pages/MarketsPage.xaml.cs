@@ -43,6 +43,20 @@ public partial class MarketsPage : Page
 
     private void ListViewItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
-        NavigationService.Navigate(new Uri($"/CurrencyPage.xaml?currencyName={BaseSymbol}", UriKind.Relative));
+        if (MarketsGrid.SelectedItem.GetType() == typeof(ApiMarkets))
+        {
+            var market = (ApiMarkets)MarketsGrid.SelectedItem;
+            if (market.BaseId is null)
+            {
+                MessageBox.Show("Currency Id is null. Try to pick another currency");
+                return;
+            }
+            var currencyPage = new CurrencyPage(market.BaseId);
+            NavigationService.Navigate(currencyPage);
+        }
+        else
+        {
+            MessageBox.Show("Something went wrong. Try to pick another currency");
+        }
     }
 }

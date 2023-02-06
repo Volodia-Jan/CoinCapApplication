@@ -37,15 +37,15 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
-            <ListView ItemsSource="{Binding SelectedMarket}">
+        <ListView Grid.Column="1" ItemsSource="{Binding SelectedMarket}" 
+                  Name="MarketsGrid">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Base ID" 
-                                        DisplayMemberBinding="{Binding BaseId}"/>
+                                        DisplayMemberBinding="{Binding BaseId}"
+                                        x:Name="BaseId"/>
                         <GridViewColumn Header="Base Symbol" 
-                                        DisplayMemberBinding="{Binding BaseSymbol}"
-                                        x:Name="BaseSymbol"/>
+                                        DisplayMemberBinding="{Binding BaseSymbol}"/>
                         <GridViewColumn Header="Quote Symbol" 
                                         DisplayMemberBinding="{Binding QuoteSymbol}"/>
                         <GridViewColumn Header="Quote ID" 
@@ -64,37 +64,5 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
-            <!--<Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Selected Market:"  FontSize="25"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path}" FontSize="20"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Volume per 24 hour:" FontSize="25"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Volume24h}" FontSize="20"/>
-            </Grid>
-            <ListView ItemsSource="{Binding Quote}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Currency name" 
-                                        DisplayMemberBinding="{Binding Key}"
-                                        x:Name="CurrencyName"/>
-                        <GridViewColumn Header="Volume per 24 hour" 
-                                        DisplayMemberBinding="{Binding Value.Volume24h }"/>
-                    </GridView>
-                </ListView.View>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <EventSetter Event="PreviewMouseLeftButtonDown"
-                                     Handler="ListViewItem_PreviewMouseLeftButtonDown" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>-->
-        </StackPanel>
     </Grid>
 </Page>

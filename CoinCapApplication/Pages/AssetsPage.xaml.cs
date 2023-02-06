@@ -32,6 +32,11 @@ public partial class AssetsPage : Page
         if (AssetsGrid.SelectedItem.GetType() == typeof(ApiAsset))
         {
             var assets = (ApiAsset)AssetsGrid.SelectedItem;
+            if (assets.Id is null)
+            {
+                MessageBox.Show("Currency Id is null. Try to pick another currency");
+                return;
+            }
             var currencyPage = new CurrencyPage(assets.Id);
             NavigationService.Navigate(currencyPage);
         }

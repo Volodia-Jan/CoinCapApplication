@@ -1,0 +1,80 @@
+﻿<Page x:Class="CoinCapApplication.Pages.CurrencyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CoinCapApplication.Pages"
+      xmlns:viewmodels="clr-namespace:CoinCapApplication.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:CurrencyViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CurrencyPage">
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="HeadingTextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Heavy"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="InfoTextBlock"></Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Currency Information" FontSize="20" FontWeight="ExtraBold"/>
+        
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="ID:"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Asset.Id}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Rank"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Asset.Rank}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Symbol"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Asset.Symbol}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="Name"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Asset.Name}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="5" Text="Supply"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Asset.Supply}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="6" Text="Max supply"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Asset.MaxSupply}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="7" Text="Market cap USD"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Asset.MarketCapUsd}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="8" Text="Volume per 24 hours"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="8" Text="{Binding Asset.VolumeUsd24Hr}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="9" Text="Price USD"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="9" Text="{Binding Asset.PriceUsd}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="10" Text="Change percent per 24 hours"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="10" Text="{Binding Asset.ChangePercent24Hr}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="11" Text="VWAp per 24 hours"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="11" Text="{Binding Asset.VWap24Hr}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="12" Text="Explorer"  Style="{StaticResource HeadingTextBlock}"/>
+        <TextBlock Grid.Column="1" Grid.Row="12" Text="{Binding Asset.Explorer}"  Style="{StaticResource InfoTextBlock}"/>
+
+        <Button Grid.Column="2" Grid.Row="11" Content="Go Back" Click="GoBack_ButtonClick"/>
+    </Grid>
+</Page>

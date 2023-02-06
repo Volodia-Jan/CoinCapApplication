@@ -1,10 +1,6 @@
 ﻿using CoinAppClient;
 using CoinAppClient.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoinCapApplication.ViewModels;
@@ -16,22 +12,37 @@ internal class AssetsViewModel : BaseViewModel
     public ObservableCollection<ApiAsset> Assets
     {
         get => _assets;
-        set
+        private set
         {
             _assets = value;
             OnPropertyChanged(nameof(Assets));
         }
     }
 
+    public ObservableCollection<ApiAsset> _selectedAssets;
+
+    public ObservableCollection<ApiAsset> SelectedAssets
+    {
+        get => _selectedAssets;
+        set
+        {
+            _selectedAssets = value;
+            OnPropertyChanged(nameof(SelectedAssets));
+        }
+    }
+
     public AssetsViewModel()
     {
         _coinCap = new CoinCapService();
-        LoadData();
+        _assets = new ObservableCollection<ApiAsset>();
+        _selectedAssets = new ObservableCollection<ApiAsset>();
+        LoadData().Wait();
     }
 
     private async Task LoadData()
     {
         var assetsList = await _coinCap.GetApiAssets();
         Assets = new ObservableCollection<ApiAsset>(assetsList);
+        SelectedAssets = Assets;
     }
 }

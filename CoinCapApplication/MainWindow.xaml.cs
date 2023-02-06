@@ -30,4 +30,9 @@ public partial class MainWindow : Window
     {
         PageFrame.Content = new MarketsPage();
     }
+
+    private void AssetsPageNavigation(object sender, RoutedEventArgs e)
+    {
+        PageFrame.Content = new AssetsPage();
+    }
 }

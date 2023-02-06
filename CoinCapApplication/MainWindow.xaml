@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinCapApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" MinHeight="650" MinWidth="1200">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF000882" Offset="1"/>
@@ -37,6 +37,8 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Content="Markets" Style="{StaticResource Nav-Btn}" Click="MarketsPageNavigation"/>
+            <Button Content="Assets" Style="{StaticResource Nav-Btn}" Click="AssetsPageNavigation"
+                    Margin="20,0,0,0"/>
         </StackPanel>
         <Frame Grid.Row="1" x:Name="PageFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

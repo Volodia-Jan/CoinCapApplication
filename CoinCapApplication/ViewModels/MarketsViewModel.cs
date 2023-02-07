@@ -46,7 +46,7 @@ internal class MarketsViewModel : BaseViewModel
         _exchanges = new ObservableCollection<ApiExchange>();
         _selectedMarket = new ObservableCollection<ApiMarkets>();
         _markets = new ObservableCollection<ApiMarkets>();
-        LoadData().Wait();
+        Task.Run(() => LoadData());
     }
 
     private async Task LoadData()

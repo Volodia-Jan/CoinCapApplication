@@ -22,7 +22,7 @@ internal class CurrencyViewModel : BaseViewModel
     {
         _coinCap = new CoinCapService();
         _asset = new ApiAsset();
-        LoadData(currencyId).Wait();
+        Task.Run(() => LoadData(currencyId));
     }
 
     private async Task LoadData(string currencyId)

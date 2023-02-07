@@ -36,7 +36,7 @@ internal class AssetsViewModel : BaseViewModel
         _coinCap = new CoinCapService();
         _assets = new ObservableCollection<ApiAsset>();
         _selectedAssets = new ObservableCollection<ApiAsset>();
-        LoadData().Wait();
+        Task.Run(() => LoadData());
     }
 
     private async Task LoadData()

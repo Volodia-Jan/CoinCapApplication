@@ -9,13 +9,53 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AssetsPage">
-    
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="FontFamily" Value="Fonts/#Ubuntu"/>
+        </Style>
+        
+        <Style x:Key="ListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="FontFamily" Value="Fonts/#Ubuntu"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        
+        <Style TargetType="Button" x:Key="OperationBtn">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Ubuntu"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}"
+                                TextElement.Foreground="{TemplateBinding Foreground}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#c1c1d7"/>        
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="10" Orientation="Horizontal">
+        
+        <StackPanel Grid.Row="0" Margin="10,5" Orientation="Horizontal">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -27,20 +67,47 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+                
                 <TextBlock Grid.Row="0" 
                            Grid.Column="0"
                            Text="Search By"
-                           FontSize="14"/>
+                           FontSize="14"
+                           Foreground="White"/>
+                
                 <TextBlock Grid.Row="0"
                            Grid.Column="1"
                            Text="Search string"
                            FontSize="14"
+                           Foreground="White"
                            Margin="20,0,0,0"/>
-                <ComboBox Grid.Column="0" Grid.Row="1" SelectedIndex="0"
+                
+                <ComboBox Grid.Column="0" 
+                          Grid.Row="1"
+                          SelectedIndex="0"
                           x:Name="AssetsSearchBy">
-                    <TextBlock Text="Id"/>
-                    <TextBlock Text="Name"/>
+                    <TextBlock Text="Id" />
+                    <TextBlock Text="Name" />
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ComboBox">
+                                        <Border CornerRadius="10" 
+                                                Background="{TemplateBinding Background}"
+                                                TextElement.Foreground="{TemplateBinding Foreground}">
+                                            <TextBlock Text="{TemplateBinding Text}"
+                                                       FontSize="13"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.Style>
                 </ComboBox>
+                
                 <TextBox Grid.Row="1"
                          Grid.Column="1"
                          Background="White" 
@@ -50,45 +117,72 @@
                          Width="200"
                          Margin="20,0,0,0"
                          Name="SearchStringTextBox"/>
+                
                 <Button Grid.Row="1" Grid.Column="2"
+                        Style="{StaticResource OperationBtn}"
                         Content="Search"
-                        Width="100"
-                        Margin="20,0,0,0"
-                        Height="25"
                         Name="SearchBtn"
                         Click="SearchBtn_Click"
                         IsDefault="True"/>
+                
                 <Button Grid.Row="1" Grid.Column="3"
+                        Style="{StaticResource OperationBtn}"
                         Content="Clear"
-                        Width="100"
-                        Margin="20,0,0,0"
-                        Height="25"
                         Name="ClearBtn"
                         Click="ClearBtn_Click"
                         IsCancel="True"/>
             </Grid>
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding SelectedAssets}"  Name="AssetsGrid">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Id" 
-                                        DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Name" 
-                                        DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Symbol" 
-                                        DisplayMemberBinding="{Binding Symbol}"
-                                        x:Name="BaseSymbol"/>
-                    <GridViewColumn Header="Price" 
-                                        DisplayMemberBinding="{Binding PriceUsd}"/>
-                    <GridViewColumn Header="Explorer" 
-                                        DisplayMemberBinding="{Binding Explorer}"/>
-                </GridView>
-            </ListView.View>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_MouseLeftButtonUp" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Row="1" ItemsSource="{Binding SelectedAssets}"  Name="AssetsGrid">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Name" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Symbol" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding Symbol}"
+                                    x:Name="BaseSymbol"/>
+                        <GridViewColumn Header="Price" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding PriceUsd}"/>
+                    </GridView>
+                </ListView.View>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_MouseLeftButtonUp" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#232324"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#3c3c40"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.Style>
+                    <Style TargetType="ListView">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="WhiteSmoke"/>
+                        <Setter Property="Opacity" Value="0.7"/>
+                        <Setter Property="FontSize" Value="13"/>
+                    </Style>
+                </ListView.Style>
+
+            </ListView>
+
+            <Frame Grid.Column="1" x:Name="CurrencyFrame" Margin="20,0,0,0"/>
+        </Grid>
     </Grid>
 </Page>

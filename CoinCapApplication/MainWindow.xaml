@@ -5,27 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinCapApplication"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="650" MinWidth="1200">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF000882" Offset="1"/>
-            <GradientStop Color="#FF048EF9"/>
-            <GradientStop Color="#FF013CB0" Offset="0.379"/>
-        </LinearGradientBrush>
-    </Window.Background>
+        WindowStyle="None"
+        Title="MainWindow" MinHeight="650" MinWidth="1200"
+        Background="#181735"
+        ResizeMode="NoResize">
     <Window.Resources>
-        <Style x:Key="Rounded-Btn" TargetType="Border">
-            <Setter Property="CornerRadius" Value="10"></Setter>
-        </Style>
-        <Style x:Key="Nav-Btn" TargetType="Button">
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Cursor" Value="Hand"/>
+        <Style TargetType="TextBlock" x:Key="NavigationTextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="FontFamily" Value="/Fonts/#    Ubuntu"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="18"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Transparent"></Setter>
-                    <Setter Property="BorderBrush" Value="White"></Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Foreground" Value="#bab8b8"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -35,11 +30,82 @@
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Content="Markets" Style="{StaticResource Nav-Btn}" Click="MarketsPageNavigation"/>
-            <Button Content="Assets" Style="{StaticResource Nav-Btn}" Click="AssetsPageNavigation"
-                    Margin="20,0,0,0"/>
-        </StackPanel>
+        <Grid Background="#0F0F2D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                <Image Source="/Images/coinImg.png" Width="25" Height="25"/>
+                <TextBlock VerticalAlignment="Center"
+                           Text="CoinCap"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           FontSize="20"
+                           FontFamily="Fonts/#Ubuntu"
+                           FontWeight="ExtraBold"/>
+            </StackPanel>
+
+            <TextBlock Grid.Column="1" 
+                       Text="Markets" 
+                       MouseUp="MarketsPageNavigation"
+                       Style="{StaticResource NavigationTextBlock}"/>
+
+            <TextBlock Grid.Column="2"
+                       Text="Assets" 
+                       Style="{StaticResource NavigationTextBlock}"
+                       MouseUp="AssetsPageNavigation"/>
+            
+            <Button Grid.Column="14"
+                    Content="X"
+                    Foreground="White"
+                    FontWeight="ExtraBold"
+                    FontSize="20"
+                    Margin="25,3" 
+                    Click="CloseBtnClick">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Ubuntu"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                                Background="{TemplateBinding Background}"
+                                TextElement.Foreground="{TemplateBinding Foreground}">
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
         <Frame Grid.Row="1" x:Name="PageFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
-</Window>
+</Window> 

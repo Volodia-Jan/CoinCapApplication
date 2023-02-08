@@ -7,14 +7,18 @@
       xmlns:viewmodels="clr-namespace:CoinCapApplication.ViewModels"
       d:DataContext="{d:DesignInstance Type=viewmodels:CurrencyViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="500"
       Title="CurrencyPage">
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="HeadingTextBlock">
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="Heavy"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
-        <Style TargetType="TextBlock" x:Key="InfoTextBlock"></Style>
+        <Style TargetType="TextBlock" x:Key="InfoTextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -37,7 +41,11 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="Currency Information" FontSize="20" FontWeight="ExtraBold"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="Currency Information"
+                   FontSize="20"
+                   Foreground="White"
+                   FontWeight="ExtraBold"/>
         
         <TextBlock Grid.Column="0" Grid.Row="1" Text="ID:"  Style="{StaticResource HeadingTextBlock}"/>
         <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Asset.Id}"  Style="{StaticResource InfoTextBlock}"/>
@@ -75,6 +83,5 @@
         <TextBlock Grid.Column="0" Grid.Row="12" Text="Explorer"  Style="{StaticResource HeadingTextBlock}"/>
         <TextBlock Grid.Column="1" Grid.Row="12" Text="{Binding Asset.Explorer}"  Style="{StaticResource InfoTextBlock}"/>
 
-        <Button Grid.Column="2" Grid.Row="11" Content="Go Back" Click="GoBack_ButtonClick"/>
     </Grid>
 </Page>

@@ -11,7 +11,15 @@
       Title="MarketsPage">
     <Page.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="FontFamily" Value="Fonts/#Ubuntu"/>
+        </Style>
+        <Style x:Key="ListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="FontFamily" Value="Fonts/#Ubuntu"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Page.Resources>
     <Grid>
@@ -28,41 +36,79 @@
                 <DataTemplate>
                     <StackPanel Margin="5">
                         <TextBlock Text="{Binding Path=Name}"
-                                   Background="White"
                                    FontSize="15"
-                                   Padding="5" 
                                    TextAlignment="Center"
                                    FontWeight="Black"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Background" Value="LightSteelBlue"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="FontFamily"  Value="Fonts/#Ubuntu"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
         </ListBox>
+        
         <ListView Grid.Column="1" ItemsSource="{Binding SelectedMarket}" 
                   Name="MarketsGrid">
                 <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Base ID" 
-                                        DisplayMemberBinding="{Binding BaseId}"
-                                        x:Name="BaseId"/>
-                        <GridViewColumn Header="Base Symbol" 
-                                        DisplayMemberBinding="{Binding BaseSymbol}"/>
-                        <GridViewColumn Header="Quote Symbol" 
-                                        DisplayMemberBinding="{Binding QuoteSymbol}"/>
-                        <GridViewColumn Header="Quote ID" 
-                                        DisplayMemberBinding="{Binding QuoteId}"/>
-                        <GridViewColumn Header="Price Quote" 
-                                        DisplayMemberBinding="{Binding PriceQuote}"/>
-                        <GridViewColumn Header="Price USD" 
-                                        DisplayMemberBinding="{Binding PriceUsd}"/>
-                        <GridViewColumn Header="Volume per 24 h" 
-                                        DisplayMemberBinding="{Binding VolumeUsd24Hr}"/>
+                <GridView>
+                    <GridViewColumn Header="Base ID" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding BaseId}"
+                                    x:Name="BaseId"/>
+                    <GridViewColumn Header="Base Symbol" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding BaseSymbol}"/>
+                    <GridViewColumn Header="Quote Symbol" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding QuoteSymbol}"/>
+                    <GridViewColumn Header="Quote ID" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding QuoteId}"/>
+                    <GridViewColumn Header="Price Quote" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding PriceQuote}"/>
+                    <GridViewColumn Header="Price USD" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding PriceUsd}"/>
+                    <GridViewColumn Header="Volume per 24 h" 
+                                    HeaderContainerStyle="{StaticResource ListViewHeaderStyle}"
+                                    DisplayMemberBinding="{Binding VolumeUsd24Hr}"/>
                     </GridView>
                 </ListView.View>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_MouseLeftButtonUp" />
-                    </Style>
-                </ListView.ItemContainerStyle>
+            
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                    <Setter Property="Opacity" Value="0.7"/>
+                    <Setter Property="FontSize" Value="13"/>
+                </Style>
+            </ListView.Style>
+            
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#232324"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#3c3c40"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
             </ListView>
     </Grid>
 </Page>

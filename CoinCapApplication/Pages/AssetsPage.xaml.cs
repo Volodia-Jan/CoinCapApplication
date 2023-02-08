@@ -32,7 +32,8 @@ public partial class AssetsPage : Page
                 return;
             }
             var currencyPage = new CurrencyPage(asset.Id);
-            NavigationService.Navigate(currencyPage);
+            //NavigationService.Navigate(currencyPage);
+            CurrencyFrame.Content = currencyPage;
         }
         else MessageBox.Show("Something went wrong. Try to pick another currency");
     }
@@ -79,6 +80,7 @@ public partial class AssetsPage : Page
             return;
         }
         viewModel.SelectedAssets = viewModel.Assets;
+        CurrencyFrame.Content = null;
     }
 
     /// <summary>

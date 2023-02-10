@@ -16,6 +16,7 @@
             <Setter Property="Foreground" Value="WhiteSmoke"/>
             <Setter Property="FontFamily" Value="/Fonts/#    Ubuntu"/>
             <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Margin" Value="0,0,30,0"/>
             <Setter Property="FontSize" Value="18"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -61,12 +62,12 @@
                            FontWeight="ExtraBold"/>
             </StackPanel>
 
-            <TextBlock Grid.Column="1" 
+            <TextBlock Grid.Column="2" 
                        Text="Markets" 
                        MouseUp="MarketsPageNavigation"
                        Style="{StaticResource NavigationTextBlock}"/>
 
-            <TextBlock Grid.Column="2"
+            <TextBlock Grid.Column="3"
                        Text="Assets" 
                        Style="{StaticResource NavigationTextBlock}"
                        MouseUp="AssetsPageNavigation"/>

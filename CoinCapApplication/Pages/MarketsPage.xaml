@@ -17,6 +17,8 @@
         </Style>
         <Style x:Key="ListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="10,5"/>
             <Setter Property="FontFamily" Value="Fonts/#Ubuntu"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -24,7 +26,7 @@
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="220" />
             <ColumnDefinition  />
         </Grid.ColumnDefinitions>
         <ListBox Name="MarketInfo" 
@@ -37,7 +39,6 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="{Binding Path=Name}"
                                    FontSize="15"
-                                   TextAlignment="Center"
                                    FontWeight="Black"/>
                     </StackPanel>
                 </DataTemplate>
